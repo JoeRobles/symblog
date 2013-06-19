@@ -15,6 +15,12 @@
         <h1>Contact symblog</h1>
     </header>
 
+    {% if app.session.hasFlash('blogger-notice') %}
+        <div class="blogger-notice">
+            {{ app.session.flash('blogger-notice') }}
+        </div>
+    {% endif %}
+        
     <p>Want to contact symblog?</p>
 
     <form action="{{ path('blogger_blog_default_contact') }}" method="post" {{ form_enctype(form) }} class="blogger">
