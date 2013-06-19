@@ -42,15 +42,14 @@ class DefaultController extends Controller
 
         if ($form->isValid()) {
             $data = $form->getData();
-
             $message = \Swift_Message::newInstance()
-                ->setSubject('Contact enquiry from symblog')
-                ->setFrom('enquiries@symblog.co.uk')
-                ->setTo('joe.robles.pdj@gmail.com')
-                ->setBcc($data->getEmail())
+                ->setSubject($this->container->getParameter('blogger_blog.contact.subject'))
+                ->setFrom($this->container->getParameter('blogger_blog.contact.from'))
+                ->setTo($data->getEmail())
+                ->setBcc($this->container->getParameter('blogger_blog.contact.to'))
                 ->setBody($this->renderView('BloggerBlogBundle:Default:contactEmail.txt.twig', array('enquiry' => $enquiry)));
             $this->get('mailer')->send($message);
-            $this->get('session')->setFlash('blogger-notice', 'Your contact enquiry was successfully sent. Thank you!');
+            $this->get('session')->getFlashBag()->add('blogger-notice', 'Your contact enquiry was successfully sent. Thank you!');
             
             return $this->redirect($this->generateUrl('blogger_blog_default_contact'));
         }

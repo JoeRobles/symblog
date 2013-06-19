@@ -1,2 +1,4 @@
 parameters:
-    blogger_blog.emails.contact_emails: joe.robles.pdj@gmail.com
+    blogger_blog.contact.subject: 'Contact enquiry from symblog'
+    blogger_blog.contact.from: enquiries@symblog.co.uk
+    blogger_blog.contact.to: joe.robles.pdj@gmail.com
